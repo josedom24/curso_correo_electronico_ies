@@ -23,7 +23,7 @@ Curso sobre el servidor de correo electrónico.
 	* Alias y redirecciones
 	* Soluciones al problema del spam
 
-## Gestión del correo desde un cliente remoto 
+## 4. Gestión del correo desde un cliente remoto 
 
 * Caso 4: Recepción de correo electrónico usando nuestro servidor de correos
 * Caso 5: Envío de correo electrónico usando nuestro servidor de correos
