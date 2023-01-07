@@ -19,7 +19,7 @@ Curso sobre el servidor de correo electrónico.
 * [Caso 1: Envío local, entre usuarios del mismo servidor](modulo3/caso1.md)
 * [Caso 2: Envío de correo desde usuarios del servidor a correos de internet](modulo3/caso2.md)
 	* [¿Qué tenemos que hacer para que nuestro correo “llegue a buen puerto”?](modulo3/asegurar_envio_correo.md)
-* Caso 3: Recibir correos desde internet a usuarios del servidor
+* [Caso 3: Recibir correos desde internet a usuarios del servidor](modulo3/caso3.md)
 	* Alias y redirecciones
 	* Soluciones al problema del spam
 
