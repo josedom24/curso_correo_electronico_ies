@@ -20,11 +20,11 @@ Curso sobre el servidor de correo electrónico.
 * [Caso 2: Envío de correo desde usuarios del servidor a correos de internet](modulo3/caso2.md)
 	* [¿Qué tenemos que hacer para que nuestro correo “llegue a buen puerto”?](modulo3/asegurar_envio_correo.md)
 * [Caso 3: Recibir correos desde internet a usuarios del servidor](modulo3/caso3.md)
-	* Alias y redirecciones
-	* Soluciones al problema del spam
+	* [Alias, redirecciones y usuarios virtuales](modulo3/alias.md)
+	* [Soluciones al problema del spam](spam.md)
 
 ## 4. Gestión del correo desde un cliente remoto 
 
-* Caso 4: Recepción de correo electrónico usando nuestro servidor de correos
-* Caso 5: Envío de correo electrónico usando nuestro servidor de correos
+* [Caso 4: Recepción de correo electrónico usando nuestro servidor de correos](modulo4/caso4.md)
+* [Caso 5: Envío de correo electrónico usando nuestro servidor de correos](modulo4/caso5.md)
 

@@ -8,7 +8,7 @@ Tenemos que tener en cuenta los siguientes aspectos:
 
 1. Si queremos recibir correos desde internet a nuestro servidor, todos nuestros dominios tienen que apuntar a nuestra ip pública `80.59.1.152`, sin embargo no hay que tocar el DNS de cdmon ya que tenemos un registro genérico que envía a `80.59.1.152` cualquier cosa de .gonzalonazareno.org que no tenga un registro tipo ADDRESS. Prueba a hacer un ``dig loquesea.gonzalonazareno.org``. Esto se hace con el registro DNS:
 
-		* `IN CNAME macaco.gonzalonazareno.org.`
+		* IN CNAME macaco.gonzalonazareno.org.
 
 2. Cuando se recibe un correo en esa dirección pública, lo recibe el servidor de correo que tenemos en `babuino-smtp`. Esto lo hace el cortafuegos de `macaco` (regla DNAT).
 3. Tenemos que configurar el servidor de correos de `babuino-smtp` para que haga relay con los correos cuyo destinos sean nuestros dominios, es decir el correo que vaya a `josedom.gonzalonazareno.org` lo tiene que enviar al servidor de correos de ese dominio, para ello:
