@@ -1,6 +1,6 @@
 # Formato de los correos electrónicos
 
-Aunque en un principio SMTP, sólo usaba caracteres ASCII para mandar los coreos, en la actualizada se utiliza [MIME](https://es.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions), extensiones multipropósito de correo de internet, que determinan unas convenciones que nos permite enviar archivos a travesz de internet, entre otras cosas nos proporcionan:
+Aunque en un principio SMTP, sólo usaba caracteres ASCII para mandar los coreos, en la actualizada se utiliza [MIME](https://es.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions), extensiones multipropósito de correo de internet, que determinan unas convenciones que nos permite enviar archivos a través de internet, entre otras cosas nos proporcionan:
 
 * Texto en conjuntos de caracteres distintos de US-ASCII;
 * Adjuntos que no son de tipo texto;
