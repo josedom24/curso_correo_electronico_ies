@@ -7,7 +7,7 @@ Esta situación podemos aprovecharla para el envío de correos entre usuarios de
 Para el envío de correo vamos a usar la utilidad `mail` (se encuentra en el paquete `bsd-mailx`). Y para enviar un correo desde el usuario `debian` al usuario `root`, simplemente ejecutamos:
 
 ```
-debian@maquina:~$ mail root@DOMINIO
+debian@maquina:~$ mail root@localhost
 Subject: Hola
 Esto es una prueba
 Cc: 
@@ -35,7 +35,7 @@ Podemos comprobar el log `/var/log/mail.log` para comprobar que se ha mandado el
 
 	Feb 6 18:10:05 vostro postfix/smtpd[3660]: DE3232C16A: client=localhost[127.0.0.1]
 	Feb 6 18:11:07 vostro postfix/cleanup[3907]: DE3232C16A: message-id=<20120206171005.DE3232C16A@mail2.josedomingo.org>
-	Feb 6 18:11:07 vostro postfix/qmgr[3531]: DE3232C16A: from=<jose@josedomingo.org>, size=400, nrcpt=1 (queue active)
-	Feb 6 18:11:08 vostro postfix/local[3908]: DE3232C16A: to=<usuario@josedomingo.org>, relay=local, delay=75, delays=74/0/0/1, dsn=2.0.0, status=sent (delivered to command: procmail -a "$EXTENSION")
+	Feb 6 18:11:07 vostro postfix/qmgr[3531]: DE3232C16A: from=<debian@maquina>, size=400, nrcpt=1 (queue active)
+	Feb 6 18:11:08 vostro postfix/local[3908]: DE3232C16A: to=<root@localhost>, relay=local, delay=75, delays=74/0/0/1, dsn=2.0.0, status=sent (delivered to command: procmail -a "$EXTENSION")
 	Feb 6 18:11:08 vostro postfix/qmgr[3531]: DE3232C16A: removed
 	Feb 6 18:11:09 vostro postfix/smtpd[3660]: disconnect from localhost[127.0.0.1]

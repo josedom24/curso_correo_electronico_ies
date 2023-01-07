@@ -17,7 +17,7 @@ Curso sobre el servidor de correo electrónico.
 ## 3. Gestión del correo desde el servidor 
 
 * [Caso 1: Envío local, entre usuarios del mismo servidor](modulo3/caso1.md)
-* Caso 2: Envío de correo desde usuarios del servidor a correos de internet
+* [Caso 2: Envío de correo desde usuarios del servidor a correos de internet](modulo3/caso2.md)
 	* ¿Qué tenemos que hacer para que nuestro correo “llegue a buen puerto”?
 * Caso 3: Recibir correos desde internet a usuarios del servidor
 	* Alias y redirecciones
