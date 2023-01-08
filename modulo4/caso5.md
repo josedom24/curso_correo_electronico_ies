@@ -12,7 +12,7 @@ Sin embargo si vamos a usar un cliente de correos para el envío de correos, est
 
 	Tenemos que conseguir que la comunicación que se establece desde el cliente con el servidor sea autentificada para ella usamos **SASL** (Simple Authentication and Security Layer) que es un framework para autenticación y autorización en protocolos de Internet. Para realizar la autenticación vamos a usar **dovecot** (que ya tiene un mecanismo de autenticación).
 
-	Ademmás tenemos que conseguir que la comunicación sea cifrada, para ello vamos a usar **STARTTLS** que nos permite que utilizando el mismo puerto (587/tcp) la conexión este cifrada.
+	Además tenemos que conseguir que la comunicación sea cifrada, para ello vamos a usar **STARTTLS** que nos permite que utilizando el mismo puerto (587/tcp) la conexión este cifrada.
 
 * **SMTPS**: Simple Mail Transfer Protocol Secure: Con este protocolo conseguimos el cifrado de la comunicación entre el cliente y el servidor. Utiliza un puerto no estándar 465/tcp. No es una extensión de smtp. Es muy parecido a HTTPS.
 
