@@ -1,4 +1,4 @@
-Caso 5: Envío de correo electrónico usando nuestro servidor de correos
+# Caso 5: Envío de correo electrónico usando nuestro servidor de correos
 
 ## Protocolo SMTP
 
