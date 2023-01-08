@@ -32,7 +32,7 @@ Una redirección se utiliza para enviar el correo que llegue a un usuario a una 
 
 ## Usuarios virtuales
 
-En muchas ocasiones es necesario usar nombres de usuario que no correpondan con los nombres de los usuarios de sistema. Por ejemplo me gustaría usar `josedom24` en vez de `debian`. `josedom24` es un usuario virtual, que lo vamos a relacionar con el usuario de sistema `debian`. Por lo tanto cuando `josedom24` reciba un correo se guardará en el buzón del usuario `debian`. Para conseguir eso hacemos lo siguiente:
+En muchas ocasiones es necesario usar nombres de usuario que no correspondan con los nombres de los usuarios de sistema. Por ejemplo me gustaría usar `josedom24` en vez de `debian`. `josedom24` es un usuario virtual, que lo vamos a relacionar con el usuario de sistema `debian`. Por lo tanto cuando `josedom24` reciba un correo se guardará en el buzón del usuario `debian`. Para conseguir eso hacemos lo siguiente:
 
 Añadimos al fichero de configuración `/etc/postfix/main.cf` las siguientes líneas:
 
