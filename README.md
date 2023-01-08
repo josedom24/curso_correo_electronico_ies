@@ -21,7 +21,7 @@ Curso sobre el servidor de correo electrónico.
 	* [¿Qué tenemos que hacer para que nuestro correo “llegue a buen puerto”?](modulo3/asegurar_envio_correo.md)
 * [Caso 3: Recibir correos desde internet a usuarios del servidor](modulo3/caso3.md)
 	* [Alias, redirecciones y usuarios virtuales](modulo3/alias.md)
-	* [Soluciones al problema del spam](modulo3asegurar_envio_correo.md)
+	* [Soluciones al problema del spam](modulo3/asegurar_envio_correo.md)
 
 ## 4. Gestión del correo desde un cliente remoto 
 
