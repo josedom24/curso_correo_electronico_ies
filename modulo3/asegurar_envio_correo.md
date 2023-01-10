@@ -19,7 +19,7 @@ Se pueden especificar diversos campos en el registro, pero en este caso, que ten
 
     DOMINIO.    600 IN  TXT "v=spf1 a mx ip4:X.X.X.X/32 ip6:XXXX:XXXX:XXXX::XXXX:XXXX/128 a:nombre_máquina -all"
 
-    Donde podemos poner las IPs de nuestro servidor de correo de diferentes formas:
+Donde podemos poner las IPs de nuestro servidor de correo de diferentes formas:
 
 * a: La IP de un registro a de un nombre del DNS
 * mx: Registro MX del DNS del dominio
