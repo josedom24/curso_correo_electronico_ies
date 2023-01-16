@@ -2,9 +2,23 @@
 
 ## Protocolo SMTP
 
+
+
+### Configuración de Postfix
+
+Hay que recordar que en la configuración de Postfix tenemos la siguiente directiva:
+
+* `mynetworks`: Con `mynetworks` se indican las IPs desde las que pueden enviarse mensajes. Por defecto: `127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128`.
+
+Por defecto, sólo se permite el envío de correos desde el propio servidor, por lo tanto para permitir el uso de un cliente de correo externo tenemos que indicar en este parámetro de configuración la dirección IP o la red donde van a estar los clientes de correo. Si los clientes de correo van a estar en internet (no en una red completa) tenemos que configurar este parámetro con el valor `0.0.0.0/0` (a esta configuración se le llama abrir el relay) y en en esta circunstancia cualquier cliente de correo podría usar nuestro servidor para eviar correo.
+
+**Si abrimos el relay (`mynetworks = 0.0.0.0/0`) es totalmente necesario que la conexión entre el cliente y el servidor debe ser autentificada y estar cifrada.**
+
+## Auntentificación y cifrado de la conexión para el envío del correo
+
 En primer lugar hay que tener en cuenta que para el envío de correos entre MTA se utiliza el puerto 25/tcp.
 
-Sin embargo si vamos a usar un cliente de correos para el envío de correos, este cliente, en la actualidad no usa el puerto 25/tcp para conectarse al servidor. Tenemos dos opciones:
+Sin embargo si vamos a usar un cliente de correos para el envío de correos, este cliente, en la actualidad no usa el puerto 25/tcp para conectarse al servidor (ya que no estaría ni autentificada, ni cifrada). Para autentificar y cifrar la conexión, tenemos dos opciones:
 
 * **ESMTP + STARTTLS**: esmtp (Enhanced Simple Mail Transfer Protocol): En este caso se usa el puerto 587/tcp. Este protocolo tiene nuevas extensiones: como smtp-auth y STARTTLS (STARTTLS transforma una conexión insegura en una segura mediante el uso de SSL/TLS).
 
