@@ -2,9 +2,9 @@
 
 ## Desde el aula
 
-En el caso de la configuración de nuestra red del instituto, sólo puede enviar correo el servidor de correo de `babuino-smtp`. Por lo tanto tenemos que configurar nuestro servidor para que utilice a `babuino-smtp` como relay para enviar nuestros correos, para ello, modificamos la siguiente directiva en el fichero de configuración:
+En el caso de la configuración de nuestra red del instituto, sólo puede enviar correo el servidor de correo de `satelite.gonzalonazareno.org`. Por lo tanto tenemos que configurar nuestro servidor para que utilice este servidor como relay para enviar nuestros correos, para que sea más sencillo hemos creado un alias llamado `mail.gonzalonazareno.org`. Para ello, modificamos la siguiente directiva en el fichero de configuración:
 
-	relayhost = babuino-smtp.gonzalonazareno.org
+	relayhost = mail.gonzalonazareno.org
 
 
 ## Desde tu servidor VPS
