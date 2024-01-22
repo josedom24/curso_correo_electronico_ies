@@ -41,3 +41,9 @@ En este caso vamos vais a utilizar vuestro nombre de dominio. Tenemos que tener 
 		tumaquina.ieshnXX.es.    900    IN    A    XX.XX.XX.XX (tu ip pública)
 
 3. Recuerda que el correo se guardará en el buzón del usuario, que tendrá que leerlo desde el servidor con la utilidad `mail`.
+
+## ¿Los correos que estamos recibiendo son legítimos?
+
+Con la configuración que hemos explicado estaremos en disposición de que nuestro servidor de correo reciba correos de otros MTA. Pero, ¿podemos estar seguros de qué los correos recibidos no son spam?
+
+En el apartado: [Soluciones al problema del spam](https://github.com/josedom24/curso_correo_electronico_ies/blob/main/modulo3/spam.md) explicaremos como configurar nuestros servidores de correo para que determinen si el correo recibido es válido y legítimo. Para ello, tendremos que comprobar el registro SPF, DKIM y DMARC del emisor.
