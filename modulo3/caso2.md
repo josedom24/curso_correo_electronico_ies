@@ -36,3 +36,5 @@ En resumen, los tres mecanismos de seguridad que tenemos que configurar son:
 * **SPF**: autoriza al servidor que envía tus correos.
 * **DKIM** garantiza la integridad del mensaje.
 * **DMARC** indica al receptor qué hacer si alguno de los anteriores no coincide (por ejemplo, rechazarlo o enviarlo a carpeta de spam).
+
+La configuración de estos métodos lo vamos a estudiar en el apartado: [¿Qué tenemos que hacer para que nuestro correo "llegue a buen puerto"?](https://github.com/josedom24/curso_correo_electronico_ies/blob/main/modulo3/asegurar_envio_correo.md).
