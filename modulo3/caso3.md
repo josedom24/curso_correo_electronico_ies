@@ -2,7 +2,7 @@
 
 ## Desde el aula
 
-Vamos a tener un correo de la forma `usuario@dominio_de_cada_alumno`, para nuestro ejemplos pongamos `jose@josedom.gonzalonazareno.org`.
+Vamos a tener un correo de la forma `usuario@dominio_de_cada_alumno`, para nuestro ejemplos pongamos `jose@josedom.gonzalonazareno.org`. El servidor de correo lo vamos a instalar en el contenedor **loki**.
 
 Tenemos que tener en cuenta los siguientes aspectos:
 
@@ -16,6 +16,8 @@ Tenemos que tener en cuenta los siguientes aspectos:
     * Añadimos en la directiva `relay_domains`, del servidor de correos de `satelite.gonzalonazareno.org`, cada uno de los nombres de dominios a los que queremos reenviar los mensajes.
 	* `satelite.gonzalonazareno.org` tiene como primer DNS a nuestro dns de la red local (**macaco**), por lo que puede preguntarlo por nuestro registro MX, ya que tiene delegada todos nuestros subdominios.
     * Para que `satelite.gonzalonazareno.org` conozca la IP de nuestro servidor de correo tendremos que crear un registro MX en nuestro servidor DNS  para realizar la resolución.
+	* En la vista externa el registro MX será `odin.loquesea.gonzalonazareno.org`. En las otras vistas, será `loki.loquesea.gonzalonazareno.org`.
+	* El correo llegará a **odin** y para reenviarlo a **loki** tendrás que configurar un DNAT del puerto 25/TCP.
 
 3. Con la configuración que tenemos en el servidor de correo de nuestra máquina debe ser suficiente para recibir el correo. Recuerda mandar un mensaje a un usuario que exista en el servidor.
 
