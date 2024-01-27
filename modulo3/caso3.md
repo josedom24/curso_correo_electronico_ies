@@ -10,11 +10,13 @@ Tenemos que tener en cuenta los siguientes aspectos:
 
 		* IN CNAME satelite.gonzalonazareno.org.
 
-Por lo tanto cuando se recibe un correo en esa dirección pública, lo recibe el servidor de correo que tenemos en `satelite.gonzalonazareno.org`.
+	Por lo tanto cuando se recibe un correo en esa dirección pública, lo recibe el servidor de correo que tenemos en `satelite.gonzalonazareno.org`.
+
 2. Tenemos que configurar el servidor de correos de `satelite.gonzalonazareno.org` para que haga relay con los correos cuyo destinos sean nuestros dominios, es decir el correo que vaya a `josedom.gonzalonazareno.org` lo tiene que enviar al servidor de correos de ese dominio, para ello:
     * Añadimos en la directiva `relay_domains`, del servidor de correos de `satelite.gonzalonazareno.org`, cada uno de los nombres de dominios a los que queremos reenviar los mensajes.
 	* `satelite.gonzalonazareno.org` tiene como primer DNS a nuestro dns de la red lo cal, por lo que puede preguntarlo por nuestro registro MX, ya que tiene delegada todos nuestros subdominios.
     * Para que `satelite.gonzalonazareno.org` conozca la IP de nuestro servidor de correo tendremos que crear un registro MX en nuestro servidor DNS  para realizar la resolución.
+
 3. Con la configuración que tenemos en el servidor de correo de nuestra máquina debe ser suficiente para recibir el correo. Recuerda mandar un mensaje a un usuario que exista en el servidor.
 
 ##  Desde tu VPS
