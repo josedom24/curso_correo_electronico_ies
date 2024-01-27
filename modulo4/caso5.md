@@ -10,7 +10,7 @@ Hay que recordar que en la configuración de Postfix tenemos la siguiente direct
 
 * `mynetworks`: Con `mynetworks` se indican las IPs desde las que pueden enviarse mensajes. Por defecto: `127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128`.
 
-Por defecto, sólo se permite el envío de correos desde el propio servidor, por lo tanto para permitir el uso de un cliente de correo externo tenemos que indicar en este parámetro de configuración la dirección IP o la red donde van a estar los clientes de correo. Si los clientes de correo van a estar en internet (no en una red específica) tenemos que configurar este parámetro con el valor `0.0.0.0/0` (a esta configuración se le llama abrir el relay) y en en esta circunstancia cualquier cliente de correo podría usar nuestro servidor para eviar correo.
+Por defecto, sólo se permite el envío de correos desde el propio servidor, por lo tanto para permitir el uso de un cliente de correo externo tenemos que indicar en este parámetro de configuración la dirección IP o la red donde van a estar los clientes de correo. Si los clientes de correo van a estar en internet (no en una red específica) tenemos que configurar este parámetro con el valor `0.0.0.0/0` (a esta configuración se le llama abrir el relay) y en en esta circunstancia cualquier cliente de correo podría usar nuestro servidor para enviar correo.
 
 **Si abrimos el relay (`mynetworks = 0.0.0.0/0`) es totalmente necesario que la conexión entre el cliente y el servidor sea autentificada y estar cifrada.**
 
