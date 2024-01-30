@@ -136,5 +136,5 @@ Por ejemplo, el registro DMARC de gonzalonazareno.org es:
 ```
 dig txt _dmarc.gonzalonazareno.org
 ...
-_dmarc.gonzalonazareno.org. 0	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r;  rua=mailto:"
+_dmarc.gonzalonazareno.org. 0	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r;"
 ```
