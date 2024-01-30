@@ -7,7 +7,6 @@ La técnica más importante para asegurar el envío de nuestro correo y luchar c
 * [dnsbl.info](https://www.dnsbl.info/dnsbl-database-check.php)
 * [mxtoolbox ](http://mxtoolbox.com/blacklists.aspx)
 * [Spamhaus Block List ](http://www.spamhaus.org/sbl/index.lasso)
-* [Cisco IronPort SenderBase Security Network ](http://www.senderbase.org/)
 
 ## SPF
 
@@ -15,23 +14,31 @@ En principio cualquier máquina puede enviar mensajes de correo a cualquier dest
 
 **Sender Policy Framework (SPF)** es un mecanismo de autenticación que mediante un registro DNS de tipo TXT describe las direcciones IPs y nombres DNS autorizados a enviar correo desde un determinado dominio. Actualmente muchos servidores de correo exigen como mínimo tener un registro SPF para tu correo o en caso contrario los mensajes provenientes de tu servidor se clasifican como spam o se descartan directamente.
 
-Se pueden especificar diversos campos en el registro, pero en este caso, que tenemos un solo equipo con una dirección IPv4, una dirección IPv6 y el nombre de dominio asociado a la IP, podemos poner como registro SPF el siguiente:
+Ejemplo de registro SPF:
 
     DOMINIO.    600 IN  TXT "v=spf1 a mx ip4:X.X.X.X/32 ip6:XXXX:XXXX:XXXX::XXXX:XXXX/128 a:nombre_máquina -all"
 
-Donde podemos poner las IPs de nuestro servidor de correo de diferentes formas:
+En definitiva es una lista de direcciones IP que autorizamos el envío del correo de nuestro dominio. Los parámetros significan los siguiente:
 
-* a: La IP de un registro a de un nombre del DNS
-* mx: Registro MX del DNS del dominio
-* ptr: Registro PTR del servidor de correo.
-* ip4:  Direcciones IPv4.
-* ip6:  Direcciones IPv6.
+* **a**: Las direcciones IP declaradas  en cuelquier registro A de la zona DNS del dominio.
+* **mx**: IP de la máquina a la que apunta el registro MX del DNS del dominio.
+* **ptr**: Las direcciones IP declaradas en los registros PTR de nuestra zona de resolución inversa.
+* **ip4**:  Direcciones IPv4.
+* **ip6**:  Direcciones IPv6.
+
+Por ejemplo, en nuestro caso en que el servidor de correo es `satelite.gonzalonazanreno.org` que tiene la dirección IP `5.39.73.79` está declarada de la siguiente forma:
+
+```
+dig txt gonzalonazareno.org
+...
+gonzalonazareno.org.	0	IN	TXT	"v=spf1 ip4:5.39.73.79  ~all"
+```
 
 Es importante comentar el signo que aparece antes de `all`, ya que podemos indicarle a los otros servidores lo que deben hacer si reciben correo desde otra dirección o máquina diferente a las que aparecen en el registro anterior:
 
-* `-`: Descartar el mensaje
-* `~`: Clasificarlo como spam
-* `?`: Aceptar el mensaje (sería como no usar SPF)
+* `-`: Descartar el mensaje.
+* `~`: Clasificarlo como spam.
+* `?`: Aceptar el mensaje (sería como no usar SPF).
 
 De esta forma el correo que enviemos desde nuestra máquina, pasará los filtros SPF en destino y la mayoría de nuestros correos llegarán a destino con poca probabilidad de que se clasifiquen como spam. 
 
@@ -42,68 +49,68 @@ Para más información puedes leer el documento: [Sender Policy Framework (SPF)]
 
 **DomainKeys Identified Mail o DKIM** es un método de autenticación pensado principalmente para reducir la suplantación de remitente. DKIM consiste en que se publica a través de DNS la clave pública del servidor de correos y se firman con la correspondiente clave privada todos los mensajes emitidos, así el receptor puede verificar cada correo emitido utilizando la clave pública.
 
-Para configurar DKIM en nuestro servidor instalaremos `opendkim` y `opendkim-tools` y realizaremos la siguiente configuración:
+Para configurar DKIM en nuestro servidor instalaremos los paquetes necesarios:
 
-    grep -v '^$\|^#' /etc/opendkim.conf
+```
+apt install opendkim opendkim-tools
+```
+A continuación vamos a crear el par de claves, para ello ejecutamos la siguiente instrucción:
 
-    Syslog          yes
-    UMask           002
-    Canonicalization        relaxed/simple
-    ExternalIgnoreList      refile:/etc/opendkim/TrustedHosts
-    InternalHosts           refile:/etc/opendkim/TrustedHosts
-    KeyTable                refile:/etc/opendkim/KeyTable
-    SigningTable            refile:/etc/opendkim/SigningTable
-    Mode            sv
-    Socket          local:/var/spool/postfix/opendkim/opendkim.sock
-    PidFile         /var/run/opendkim/opendkim.pid
-    OversignHeaders     From
-    TrustAnchorFile     /usr/share/dns/root.key
-    UserID          opendkim
+```
+sudo -u opendkim opendkim-genkey -D /etc/dkimkeys -d midominio.algo -s miclave
+```
 
-Donde hemos modificado el servicio para que se ejecute en un socket dentro del directorio postfix, porque a continuación vamos a conectar ambos servicios. Editamos el fichero `/etc/opendkim/TrustedHosts` e incluimos una lista de todos los nombres e IPs en los que se confía directamente (todos los posibles nombres de la propia máquina de momento):
+Es decir con el usuario `opendkim` se generan un par de claves que se guardan en el directorio `/etc/dkimkeys` (`-D`), del dominio `midominio.algo` y le ponemos un nombre al selector, en nuestro caso `miclave`. El selector es el nombre que se va a utilizar para identificar las claves.
 
-    127.0.0.1
-    ::1
-    localhost
-    HOSTNAME
-    *.DOMINIO
+En este caso en el directorio `/etc/dkimkeys` se han creado dos ficheros:
 
-Creamos el directorio `/etc/opendkim/keys/DOMINIO/` y lo protegemos adecuadamente, ya que vamos a ubicar dentro la clave privada de DKIM:
+* `miclave.private`: Donde se guarda la calve privada con lo que se va a firmar los correos.
+* `miclave.txt`: Donde se guarda la clave pública.
 
-    mkdir  /etc/opendkim/keys/DOMINIO/
-    chown opendkim. /etc/opendkim/keys/DOMINIO/
-    chmod 0710 /etc/opendkim/keys/DOMINIO/
+A continuación vamos a configurar opendkim, para ello en el fichero `/etc/opendkim.conf` descomentamos y ponemos los siguiente valores en los siguientes parámetros:
 
-Usamos la aplicación `opendkin-genkey` para generar la clave privada y el registro para el DNS:
+```
+Domain                  midominio.algo
+KeyFile                 /etc/dkimkeys/miclave.private
+Selector                miclave
+Socket                  inet:8892@localhost
+```
 
-    opendkim opendkim-genkey -D /etc/dkimkeys/keys/DOMINIO -d DOMINIO -s mail
+Indicamos nuestro dominio, el fichero donde está la clave privada, el selector que hemos utilizado al crear las calves y por último configuramos el opendkim para que escuche peticiones en el puerto 8892/tcp de localhost (para que postfix se conecte a él).
 
-Esto genera los ficheros `mail.private` y `mail.txt`, el primero con la clave privada y el segundo con el registro TXT que debemos agregar a nuestro DNS:
+Para integra postfix con opendkim, añadimos al fichero `/etc/postfix/main.cf` las siguientes líneas:
 
-    mail._domainkey IN  TXT ( "v=DKIM1; h=sha256; k=rsa; "
-                                  "p=MIIBIjANBgkqhkiG9w...Klw"
-                                   "va0hJE12...AQAB" )  ;
+```
+smtpd_milters = inet:localhost:8892
+non_smtpd_milters = $smtpd_milters
+```
 
-Modificamos los siguientes ficheros:
+Por último reinciamos los dos servicios:
 
-* `/etc/opendkim/SigningTable`
-	
-        *@DOMINIO mail._domainkey.DOMINIO
+```
+systemctl restart opendkim
+systemctl restart postfix
+```
 
-* `/etc/opendkim/KeyTable`
+Por último tenemos que publicar nuestra calve pública en un registro TXT del DNS de nuestro dominio, para ello visualizamos el conteneido dela calve pública:
 
-	    mail._domainkey.DOMINIO DOMINIO:mail:/etc/opendkim/keys/DOMINIO/mail.private
+```
+cat miclave.txt
+miclave._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx2PSS+Z1bCqnUGay+rbr/0jjdBjlQ5SRdzX237NGv6YaeK7DqVFfWBY83Nk6QWCLjxg9Qg588AqjjnlLLDmVNNNPRpzytpFnBdIge6P5kUyJI8VPqw+c6uaNJ2yfG6awfWZvgvDGmqjO6ZFQX+vDV2yR7N0uejJd+WPvSMVN9fYGdBFWWnX+JZ8VVb49Cn9L4tbsMqhiDLY/4L"
+	  "/3pLsJMzLOAVuzUac8p0CGPL/nJOKhaXDGdxyehxZW/FbT7ZYx/fYzSvG9OdEVHcTBxQkvE3hYWv/dPc617dJrO6YrB0AeJxOWmPJgeMbYehZYELUIMOGgIHt7z6/eR6du+27mYQIDAQAB" )  ; ----- DKIM key miclave for dominio.algo
+```
 
+Tenemos que crear un registro TXT en nuestro DNS con el nombre `miclave._domainkey.dominio.algo` con el contenido desde **v=DKIM1** hasta la última comilla, quitando las comillas y poniendo todo en una misma línea.
+
+Por ejemplo, para el registro de `gonzalonazareno.org` sería:
+
+![dkim](img/dkim_dns.png)
+
+    
 Verificamos que la configuración del registro de DKIM es correcta utilizando alguna [herramienta externa](https://mxtoolbox.com/dkim.aspx), que da los resultados de forma fácilmente interpretable:
 
 ![dkim](img/dkim.png)
-
-Ahora queda configurar postfix para que firme los correos que envía, para lo que editamos el fichero /`etc/postfix/main.cf` y añadimos:
-
-    milter_default_action = accept
-    milter_protocol = 6
-    smtpd_milters = local:/opendkim/opendkim.sock
-    non_smtpd_milters = $smtpd_milters
 
 ## DMARC
 
