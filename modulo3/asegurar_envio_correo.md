@@ -131,7 +131,7 @@ El único parámetro obligatorio es el **p**.
 
 Se pueden ver los detalles del formato en [What is a DMARC DNS Record?](https://mxtoolbox.com/dmarc/details/what-is-a-dmarc-record).
 
-Por ejemplo, pel registro DMARC de gonzalonazareno.org es:
+Por ejemplo, el registro DMARC de gonzalonazareno.org es:
 
 ```
 dig txt _dmarc.gonzalonazareno.org
