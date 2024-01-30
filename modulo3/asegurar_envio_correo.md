@@ -114,11 +114,27 @@ Verificamos que la configuración del registro de DKIM es correcta utilizando al
 
 ## DMARC
 
-**DMARC** es el último mecanismo de autenticación que vamos a configurar, realmente lo hace DMARC es ampliar el funcionamiento de SPF y DKIM, mediante la publicación en DNS de la política del sitio, en el que decimos si usamos, SPF, DKIM o ambos, entre otras cosas.
+**DMARC** (Domain-based Message Authentication, Reporting, and Conformance) es el último mecanismo de autenticación que vamos a configurar, realmente lo hace DMARC es ampliar el funcionamiento de SPF y DKIM, mediante la publicación en DNS de la política del sitio, en el que decimos si usamos, SPF, DKIM o ambos,y que se debe hacer coon nuestro correo si no cumple con los protocolos anteriores.
 
 La configuración de DMARC para el correo saliente es sencilla, consiste en un registro DNS TXT en el que se especifica si se está usando SPF y/o DKIM y qué hacer con el correo que no cumpla con los mecanismos de autenticación que estén habilitados, como en este caso están ambos, creamos un registro como el siguiente:
 
-    _dmarc.DOMINIO. 3600    IN  TXT "v=DMARC1; p=quarantine;adkim=r;aspf=r; rua=mailto:postmaster@DOMINIO"
+    _dmarc.DOMINIO. 3600    IN  TXT "v=DMARC1; p=quarantine;adkim=r;aspf=r; rua=mailto:correo@DOMINIO"
+
+Veamos algunos parámetros:
+
+* **p**, se indica la política de correos. `p=quarantine` indica que los servidores de correo electrónico deben "poner en cuarentena" los correos electrónicos que no superan DKIM y SPF, considerándolos potencialmente spam. Otras configuraciones posibles para esto son `p=none`, que permite que los correos que suspenden sigan pasando, y `p=reject`, que ordena a los servidores de correo electrónico que bloqueen los correos que suspenden.
+* **adkim**: Indica cómo son la comprobaciones DKM. `adkim=s` significa que las comprobaciones DKIM son "estrictas" (el dominio del from debe coincidir con tu dominio). Esto también se puede configurar como "relajado" (el dominio del from puede ser un subdominio de tu dominio) si se cambia por `adkim=r`.
+* **aspf**: Lo mismo que el anterior pero para SPF.
+* **rua**: Se utiliza para designar una o varias direcciones de correo electrónico a las que enviar los informes DMARC Aggregate Feedback. 
+
+El único parámetro obligatorio es el **p**.
 
 Se pueden ver los detalles del formato en [What is a DMARC DNS Record?](https://mxtoolbox.com/dmarc/details/what-is-a-dmarc-record).
 
+Por ejemplo, pel registro DMARC de gonzalonazareno.org es:
+
+```
+dig txt _dmarc.gonzalonazareno.org
+...
+_dmarc.gonzalonazareno.org. 0	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r;  rua=mailto:"
+```
