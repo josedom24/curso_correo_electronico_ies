@@ -64,7 +64,7 @@ Es decir con el usuario `opendkim` se generan un par de claves que se guardan en
 
 En este caso en el directorio `/etc/dkimkeys` se han creado dos ficheros:
 
-* `miclave.private`: Donde se guarda la calve privada con lo que se va a firmar los correos.
+* `miclave.private`: Donde se guarda la clave privada con lo que se va a firmar los correos.
 * `miclave.txt`: Donde se guarda la clave pública.
 
 A continuación vamos a configurar opendkim, para ello en el fichero `/etc/opendkim.conf` descomentamos y ponemos los siguiente valores en los siguientes parámetros:
@@ -76,7 +76,7 @@ Selector                miclave
 Socket                  inet:8892@localhost
 ```
 
-Indicamos nuestro dominio, el fichero donde está la clave privada, el selector que hemos utilizado al crear las calves y por último configuramos el opendkim para que escuche peticiones en el puerto 8892/tcp de localhost (para que postfix se conecte a él).
+Indicamos nuestro dominio, el fichero donde está la clave privada, el selector que hemos utilizado al crear las claves y por último configuramos el opendkim para que escuche peticiones en el puerto 8892/tcp de localhost (para que postfix se conecte a él).
 
 Para integra postfix con opendkim, añadimos al fichero `/etc/postfix/main.cf` las siguientes líneas:
 
@@ -92,7 +92,7 @@ systemctl restart opendkim
 systemctl restart postfix
 ```
 
-Por último tenemos que publicar nuestra calve pública en un registro TXT del DNS de nuestro dominio, para ello visualizamos el conteneido dela calve pública:
+Por último tenemos que publicar nuestra clave pública en un registro TXT del DNS de nuestro dominio, para ello visualizamos el contenido de la clave pública:
 
 ```
 cat miclave.txt
