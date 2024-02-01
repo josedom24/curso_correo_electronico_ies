@@ -85,7 +85,7 @@ smtpd_milters = inet:localhost:8892
 non_smtpd_milters = $smtpd_milters
 ```
 
-Por último reinciamos los dos servicios:
+Por último reiniciamos los dos servicios:
 
 ```
 systemctl restart opendkim
