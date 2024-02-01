@@ -19,7 +19,7 @@ Para más información:
 
 ## SPF
 
-Podríamos hacer que nuestro servidor de correos hiiciera la comprobación del registro SPF del dominio origen del correo.
+Podríamos hacer que nuestro servidor de correos hiciera la comprobación del registro SPF del dominio origen del correo.
 
 Para realizar la configuración debemos modificar postfix para que haga la verificación de SPF de los correos recibidos, para lo que instalamos el paquete `postfix-policyd-spf-python` y añadimos la siguiente línea a `/etc/postfix/master.cf`:
 

@@ -20,13 +20,13 @@ Ejemplo de registro SPF:
 
 En definitiva es una lista de direcciones IP que autorizamos el envío del correo de nuestro dominio. Los parámetros significan los siguiente:
 
-* **a**: Las direcciones IP declaradas  en cuelquier registro A de la zona DNS del dominio.
+* **a**: Las direcciones IP declaradas  en cualquier registro A de la zona DNS del dominio.
 * **mx**: IP de la máquina a la que apunta el registro MX del DNS del dominio.
 * **ptr**: Las direcciones IP declaradas en los registros PTR de nuestra zona de resolución inversa.
 * **ip4**:  Direcciones IPv4.
 * **ip6**:  Direcciones IPv6.
 
-Por ejemplo, en nuestro caso en que el servidor de correo es `satelite.gonzalonazanreno.org` que tiene la dirección IP `5.39.73.79` está declarada de la siguiente forma:
+Por ejemplo, en nuestro caso en que el servidor de correo es `satelite.gonzalonazareno.org` que tiene la dirección IP `5.39.73.79` está declarada de la siguiente forma:
 
 ```
 dig txt gonzalonazareno.org
