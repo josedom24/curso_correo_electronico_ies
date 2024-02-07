@@ -1,6 +1,6 @@
 # Soluciones al problema del spam
 
-## SMTPd restrintions
+## SMTPd restrictions
 
 Con las restricciones postfix podemos limitar el uso de nuestro servidor como cliente para enviar correos y como servidor a la hora de recibir correos. 
 
