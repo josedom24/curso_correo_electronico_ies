@@ -2,22 +2,22 @@
 
 ## Desde el aula
 
-Vamos a tener un correo de la forma `usuario@dominio_de_cada_alumno`, para nuestro ejemplos pongamos `jose@josedom.gonzalonazareno.org`. El servidor de correo lo vamos a instalar en el contenedor **loki**.
+Vamos a tener un correo de la forma `usuario@dominio_de_cada_alumno`, para nuestro ejemplos pongamos `jose@josedom.gonzalonazareno.org`. El servidor de correo lo vamos a instalar en el contenedor **sanji**.
 
 Tenemos que tener en cuenta los siguientes aspectos:
 
-1. Si queremos recibir correos desde internet a nuestro servidor, todos nuestros dominios tienen que apuntar a nuestra ip pública `5.39.73.79` (IP de `satelite.gonzalonazareno.org`), sin embargo no hay que tocar el DNS de cdmon ya que tenemos un registro genérico que envía a `5.39.73.79 ` cualquier cosa de .gonzalonazareno.org que no tenga un registro tipo ADDRESS. Prueba a hacer un `dig loquesea.gonzalonazareno.org`. Esto se hace con el registro DNS:
+1. Si queremos recibir correos desde internet a nuestro servidor, todos nuestros dominios tienen que apuntar a nuestra ip pública `5.196.224.198` (IP de `macaco.gonzalonazareno.org`), sin embargo no hay que tocar el DNS de cdmon ya que tenemos un registro genérico que envía a `5.196.224.198` cualquier cosa de .gonzalonazareno.org que no tenga un registro tipo ADDRESS. Prueba a hacer un `dig loquesea.gonzalonazareno.org`. Esto se hace con el registro DNS:
 
-		* IN CNAME satelite.gonzalonazareno.org.
+		* IN CNAME macaco.gonzalonazareno.org.
 
-	Por lo tanto cuando se recibe un correo en esa dirección pública, lo recibe el servidor de correo que tenemos en `satelite.gonzalonazareno.org`.
+	Por lo tanto cuando se recibe un correo en esa dirección pública, lo recibe el servidor de correo que tenemos en `macaco.gonzalonazareno.org`.
 
-2. Tenemos que configurar el servidor de correos de `satelite.gonzalonazareno.org` para que haga relay con los correos cuyo destinos sean nuestros dominios, es decir el correo que vaya a `josedom.gonzalonazareno.org` lo tiene que enviar al servidor de correos de ese dominio, para ello:
-    * Añadimos en la directiva `relay_domains`, del servidor de correos de `satelite.gonzalonazareno.org`, cada uno de los nombres de dominios a los que queremos reenviar los mensajes.
-	* `satelite.gonzalonazareno.org` tiene como primer DNS a nuestro dns de la red local (**macaco**), por lo que puede preguntarlo por nuestro registro MX, ya que tiene delegada todos nuestros subdominios.
-    * Para que `satelite.gonzalonazareno.org` conozca la IP de nuestro servidor de correo tendremos que crear un registro MX en nuestro servidor DNS  para realizar la resolución.
-	* En la vista externa el registro MX será `odin.loquesea.gonzalonazareno.org`. En las otras vistas, será `loki.loquesea.gonzalonazareno.org`.
-	* El correo llegará a **odin** y para reenviarlo a **loki** tendrás que configurar un DNAT del puerto 25/TCP.
+2. Tenemos que configurar el servidor de correos de `gorila.gonzalonazareno.org` para que haga relay con los correos cuyo destinos sean nuestros dominios, es decir el correo que vaya a `josedom.gonzalonazareno.org` lo tiene que enviar al servidor de correos de ese dominio, para ello:
+    * Añadimos en la directiva `relay_domains`, del servidor de correos de `gorila.gonzalonazareno.org`, cada uno de los nombres de dominios a los que queremos reenviar los mensajes.
+	* `macaco.gonzalonazareno.org` tiene como primer DNS a nuestro dns de la red local (**gorila**), por lo que puede preguntarle por nuestro registro MX, ya que tiene delegada todos nuestros subdominios.
+    * Para que `macaco.gonzalonazareno.org` conozca la IP de nuestro servidor de correo tendremos que crear un registro MX en nuestro servidor DNS  para realizar la resolución.
+	* En la vista externa el registro MX será `luffy.loquesea.gonzalonazareno.org`. En las otras vistas, será `sanji.loquesea.gonzalonazareno.org`.
+	* El correo llegará a **luffy** y para reenviarlo a **sanji** tendrás que configurar un DNAT del puerto 25/TCP.
 
 3. Con la configuración que tenemos en el servidor de correo de nuestra máquina debe ser suficiente para recibir el correo. Recuerda mandar un mensaje a un usuario que exista en el servidor.
 
