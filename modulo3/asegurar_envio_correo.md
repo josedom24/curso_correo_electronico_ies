@@ -122,8 +122,11 @@ La configuración de DMARC para el correo saliente es sencilla, consiste en un r
 
 Veamos algunos parámetros:
 
-* **p**, se indica la política de correos. `p=quarantine` indica que los servidores de correo electrónico deben "poner en cuarentena" los correos electrónicos que no superan DKIM y SPF, considerándolos potencialmente spam. Otras configuraciones posibles para esto son `p=none`, que permite que los correos que suspenden sigan pasando, y `p=reject`, que ordena a los servidores de correo electrónico que bloqueen los correos que suspenden.
-* **adkim**: Indica cómo son la comprobaciones DKM. `adkim=s` significa que las comprobaciones DKIM son "estrictas" (el dominio del from debe coincidir con tu dominio). Esto también se puede configurar como "relajado" (el dominio del from puede ser un subdominio de tu dominio) si se cambia por `adkim=r`.
+* **p**, se indica la política de correos:
+    * `p=none`, que permite que los correos que suspenden sigan pasando.
+    * `p=quarantine` indica que los servidores de correo electrónico deben "poner en cuarentena" los correos electrónicos que no superan DKIM y SPF, considerándolos potencialmente spam.
+    * `p=reject`, que ordena a los servidores de correo electrónico que bloqueen los correos que suspenden.
+* **adkim**: Indica cómo son la comprobaciones DKIM. `adkim=s` significa que las comprobaciones DKIM son "estrictas" (el dominio del from debe coincidir con tu dominio). Esto también se puede configurar como "relajado" (el dominio del from puede ser un subdominio de tu dominio) si se cambia por `adkim=r`.
 * **aspf**: Lo mismo que el anterior pero para SPF.
 * **rua**: Se utiliza para designar una o varias direcciones de correo electrónico a las que enviar los informes DMARC Aggregate Feedback. 
 
@@ -138,3 +141,4 @@ dig txt _dmarc.gonzalonazareno.org
 ...
 _dmarc.gonzalonazareno.org. 0	IN	TXT	"v=DMARC1; p=quarantine; adkim=r; aspf=r;"
 ```
+
