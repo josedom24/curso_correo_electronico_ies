@@ -85,7 +85,7 @@ Para integra postfix con opendkim, añadimos al fichero `/etc/postfix/main.cf` l
 milter_protocol = 2
 milter_default_action = accept
 smtpd_milters = inet:localhost:8892
-non_smtpd_milters = inet:localhost:8892
+non_smtpd_milters = $smtpd_milters
 ```
 
 Por último reiniciamos los dos servicios:
