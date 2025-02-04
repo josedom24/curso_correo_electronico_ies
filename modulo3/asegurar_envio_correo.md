@@ -82,8 +82,10 @@ Indicamos el modo de funcionamiento: **s** "signing" (firma) y **v**  "verificat
 Para integra postfix con opendkim, añadimos al fichero `/etc/postfix/main.cf` las siguientes líneas:
 
 ```
+milter_protocol = 2
+milter_default_action = accept
 smtpd_milters = inet:localhost:8892
-non_smtpd_milters = $smtpd_milters
+non_smtpd_milters = inet:localhost:8892
 ```
 
 Por último reiniciamos los dos servicios:
