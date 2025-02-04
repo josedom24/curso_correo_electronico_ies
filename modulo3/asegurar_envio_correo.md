@@ -135,6 +135,11 @@ Veamos algunos parámetros:
 
 El único parámetro obligatorio es el **p**.
 
+¿Cómo funciona?
+
+* Si el correo falla solo SPF o solo DKIM, pero no ambos, DMARC verifica si uno de ellos al menos pasa. Si alguno pasa, el correo se considera como "pasado" según DMARC, aunque no esté al 100% validado.
+* Si ambos mecanismos fallan, DMARC evaluará la política que tengas configurada (none, quarantine, reject) y actuará en consecuencia.
+
 Se pueden ver los detalles del formato en [What is a DMARC DNS Record?](https://mxtoolbox.com/dmarc/details/what-is-a-dmarc-record).
 
 Por ejemplo, el registro DMARC de gonzalonazareno.org es:
