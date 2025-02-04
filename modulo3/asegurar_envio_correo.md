@@ -70,13 +70,14 @@ En este caso en el directorio `/etc/dkimkeys` se han creado dos ficheros:
 A continuación vamos a configurar opendkim, para ello en el fichero `/etc/opendkim.conf` descomentamos y ponemos los siguiente valores en los siguientes parámetros:
 
 ```
+Mode                    sv
 Domain                  midominio.algo
 KeyFile                 /etc/dkimkeys/miclave.private
 Selector                miclave
 Socket                  inet:8892@localhost
 ```
 
-Indicamos nuestro dominio, el fichero donde está la clave privada, el selector que hemos utilizado al crear las claves y por último configuramos el opendkim para que escuche peticiones en el puerto 8892/tcp de localhost (para que postfix se conecte a él).
+Indicamos el modo de funcionamiento: **s** "signing" (firma) y **v**  "verification" (verificación). También indicamos el modo (Indicamos nuestro dominio, el fichero donde está la clave privada, el selector que hemos utilizado al crear las claves y por último configuramos el opendkim para que escuche peticiones en el puerto 8892/tcp de localhost (para que postfix se conecte a él).
 
 Para integra postfix con opendkim, añadimos al fichero `/etc/postfix/main.cf` las siguientes líneas:
 
