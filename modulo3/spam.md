@@ -46,9 +46,11 @@ Probamos a enviar un correo desde otro origen con destino a nuestra máquina y c
 
 ## DKIM
 
-Podemos configurar nuestro postfix, para que verifique el registro DKIM y valide la firma que trae el correo.
+Podemos configurar nuestro postfix, para que verifique el registro DKIM y valide la firma que trae el correo. Ya lo hemos configurado al poner en la configuración de `opendkim` el modo de funcionamiento a `v`:
 
-* [How to Set up SPF and DKIM with Postfix on Ubuntu Server](https://www.linuxbabe.com/mail-server/setting-up-dkim-and-sp)
+```
+Mode	sv
+```
 
 
 ## DMARC
