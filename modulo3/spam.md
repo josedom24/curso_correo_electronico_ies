@@ -118,7 +118,7 @@ Para que **Postfix** envíe los correos entrantes a SpamAssassin, se usa **`spam
 
 * Aunque se puede usar amavis, si sólo vas a trabajar con spamassassin, se recomienda `spamc`.
 * `spamc` es un cliente ligero que envía correos a SpamAssassin (spamd) para su análisis. En lugar de que SpamAssassin procese cada correo de forma independiente (lo que puede ser lento y consumir muchos recursos), spamc actúa como un intermediario que envía los correos al servicio spamd en segundo plano.
-* ` spamc` consuyme menos recursos (ram y cpu) y nos proporcina mayor rendimeinto ya que puede procesar múltiples correos simultáneamente.
+* ` spamc` consume menos recursos (ram y cpu) y nos proporcina mayor rendimeinto ya que puede procesar múltiples correos simultáneamente.
 
 **¿Cómo funciona?**
 
