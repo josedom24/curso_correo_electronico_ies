@@ -5,7 +5,7 @@
 Si utilizamos un cliente de correo (MUA) externo para leer el correo guardado en el servidor de correos podemos usar dos protocolos de comunicación:
 
 * **POP3**: Mail Delivery Agent [Agente de Entrega de Correo]. Protocolo para recuperar correos electrónicos de un MDA. Su principal característica es que se descargan todos los correos.
-* **IMAP**: Internet Message Access Protocol [Protocolo de Acceso a Mensajes de Internet]. Prótocolo para recuperar correos electrónicos de un MDA. En este caso, se sincroniza el estado de los correos entre el servidor y el cliente.
+* **IMAP**: Internet Message Access Protocol [Protocolo de Acceso a Mensajes de Internet]. Protocolo para recuperar correos electrónicos de un MDA. En este caso, se sincroniza el estado de los correos entre el servidor y el cliente.
 
 En nuestro caso **vamos a trabajar con IMAP** que es el protocolo que actualmente se utiliza para poder leer nuestro correo desde distintos clientes de correos al no descargar todos los correos del buzón.
 
@@ -31,7 +31,7 @@ Después de reiniciar el servicio los correos se guardarán en un directorio `Ma
 
 ## Protocolo IMAP
 
-Internet Message Access Protocol, o su acrónimo IMAP, es un protocolo de red de acceso a mensajes electrónicos almacenados en un servidor. Mediante IMAP se puede tener acceso al correo electrónico desde cualquier equipo que tenga una conexión a Internet. IMAP tiene varias ventajas sobre POP, que es el otro protocolo empleado para obtener correo desde un servidor. Por ejemplo, es posible especificar en IMAP carpetas del lado servidor. Por otro lado, es más complejo que POP ya que permite visualizar los mensajes de manera remota y no descargando los mensajes como lo hace POP.
+**Internet Message Access Protocol**, o su acrónimo IMAP, es un protocolo de red de acceso a mensajes electrónicos almacenados en un servidor. Mediante IMAP se puede tener acceso al correo electrónico desde cualquier equipo que tenga una conexión a Internet. IMAP tiene varias ventajas sobre POP, que es el otro protocolo empleado para obtener correo desde un servidor. Por ejemplo, es posible especificar en IMAP carpetas del lado servidor. Por otro lado, es más complejo que POP ya que permite visualizar los mensajes de manera remota y no descargando los mensajes como lo hace POP.
 
 El protocolo imap utiliza el puerto 143/tcp. La comunicación es autentificada y sería muy conveniente que fuera cifrada. Para cifrar la comunicación tenemos dos opciones:
 
