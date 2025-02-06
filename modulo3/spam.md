@@ -8,7 +8,7 @@ Tenemos varias directivas que nos permiten restringuir tanto el envío como la r
 
 * `smtpd_helo_restrictions`: Podemos configurar nuestro servidor de correos para que filtre a los clientes que intentan usarlo por medio de algún parámetro del protocolo: HELO, MAIL FROM, RCPT TO,..., 
 * `smtpd_client_restrictions`: Podemos filtrar los dominios de envíos, campo MAIL FROM.
-* `smtpd_relay_restrictions`: Podemos filtrar quien tiene permiso para utilziar nuestro servidor como relay.
+* `smtpd_relay_restrictions`: Podemos filtrar quien tiene permiso para utilizar nuestro servidor como relay.
 * `smtpd_recipient_restrictions`: Podemos filtrar los clientes desde los que nos llegan correos. Por ejemplo, podemos hacer una búsqueda en las listas de cloqueo de SPAM (RBL).
 
 Para más información:
