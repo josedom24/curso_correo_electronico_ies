@@ -80,7 +80,7 @@ El esquema de funcionamiento es:
     Dependiendo del resultado del escaneo de ClamAV y otras reglas:
         * Si el correo contiene un virus o un archivo malicioso, Amavis puede rechazar el correo o marcarlo con una etiqueta de aviso (por ejemplo, agregando una cabecera como `X-Virus-Status`: Virus Detected o enviando un correo de aviso al administrador).
         * Si el correo es limpio (sin virus), Amavis lo pasa a Postfix para su entrega final, añadiendo cabeceras o realizando más análisis (por ejemplo, de spam).
-4. El correo se devuelve a Postfix (puerto 10025), que tdeterminará que hacer con el correo:
+4. El correo se devuelve a Postfix (puerto 10025), que determinará que hacer con el correo:
     * Rechazar el correo
     * Marcar correo como sospechoso pero no rechazarlo
     * Reenvío a una dirección de alerta
