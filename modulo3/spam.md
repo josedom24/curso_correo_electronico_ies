@@ -74,6 +74,16 @@ Para usar ClamAV junto con Postfix, normalmente se integra mediante [**Amavis**]
 
 El esquema de funcionamiento es:
 
+```
+ [SpamAssassin]
+                                            ^
+                                            |
+Email --> [Postfix] --> [(10024) amavisd-new] --> [(10025) Postfix] --> Mailbox
+                                            |
+                                            v
+                                         [ClamAV]
+```
+
 1. El correo llega a Posfix.
 2. Postfix lo pasa a amavis (puerto 10024).
 3. amavis lo pasa a ClamAV (también lo puede pasar a SpamAssassin). Determina qué hacer con el correo según los resultados del escaneo de ClamAV y otras reglas de filtrado (como las de SpamAssassin).
