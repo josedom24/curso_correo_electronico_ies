@@ -75,10 +75,10 @@ Para usar ClamAV junto con Postfix, normalmente se integra mediante [**Amavis**]
 El esquema de funcionamiento es:
 
 ```
- [SpamAssassin]
+                                      [SpamAssassin]
                                             ^
                                             |
-Email --> [Postfix] --> [(10024) amavisd-new] --> [(10025) Postfix] --> Mailbox
+      Email --> [Postfix] --> [(10024) amavisd-new] --> [(10025) Postfix] --> Mailbox
                                             |
                                             v
                                          [ClamAV]
