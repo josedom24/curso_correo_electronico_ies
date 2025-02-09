@@ -86,8 +86,7 @@ El esquema de funcionamiento es:
 
 1. El correo llega a Posfix.
 2. Postfix lo pasa a amavis (puerto 10024).
-3. amavis lo pasa a ClamAV (también lo puede pasar a SpamAssassin). Determina qué hacer con el correo según los resultados del escaneo de ClamAV y otras reglas de filtrado (como las de SpamAssassin).
-    Dependiendo del resultado del escaneo de ClamAV y otras reglas:
+3. amavis lo pasa a ClamAV (también lo puede pasar a SpamAssassin). Determina qué hacer con el correo según los resultados del escaneo de ClamAV y otras reglas de filtrado (como las de SpamAssassin). Dependiendo del resultado del escaneo de ClamAV y otras reglas:
         * Si el correo contiene un virus o un archivo malicioso, Amavis puede rechazar el correo o marcarlo con una etiqueta de aviso (por ejemplo, agregando una cabecera como `X-Virus-Status`: Virus Detected o enviando un correo de aviso al administrador).
         * Si el correo es limpio (sin virus), Amavis lo pasa a Postfix para su entrega final, añadiendo cabeceras o realizando más análisis (por ejemplo, de spam).
 4. El correo se devuelve a Postfix (puerto 10025), que determinará que hacer con el correo:
